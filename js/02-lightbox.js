@@ -8,6 +8,12 @@ const listItemsMarkup = createListItemsMarkup(galleryItems);
 
 refs.galleryList.innerHTML = listItemsMarkup;
 
+const modal = new SimpleLightbox('.gallery__link', {
+    sourceAttr: 'href',
+    captionsData: 'alt',
+    captionDelay: 250,
+});
+
 function createListItemsMarkup(items) {
     return items.map(({ preview, original, description }) =>
     `<li class="gallery__item">
@@ -17,17 +23,4 @@ function createListItemsMarkup(items) {
     </li>`).join('');
 };
 
-refs.galleryList.addEventListener('click', imageClickOpen);
 
-function imageClickOpen(event) {
-    event.preventDefault();
-    if (event.target.nodeName !== 'IMG') {
-        return;
-    }
-
-    const modal = new SimpleLightbox('.gallery__link', {
-        sourceAttr: 'href',
-        captionsData: 'alt',
-        captionDelay: 250,
-    });
-};
