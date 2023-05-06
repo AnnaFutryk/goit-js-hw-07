@@ -31,11 +31,20 @@ function imageClickOpen(event) {
     }
     // модалка через бібліотеку//
     const modal = basicLightbox.create(
-        `<img src = "${event.target.dataset.source}" width="800" height="600">`
+        `<img src = "${event.target.dataset.source}" width="800" height="600">`,
+        {
+            onShow: instance => {
+                window.addEventListener('keydown', closeModal);
+            },
+            onClose: instance => {
+                window.removeEventListener('keydown', closeModal);
+            },
+        }
     );
+
     modal.show();
   
-    window.addEventListener('keydown', closeModal);
+    
 
     function closeModal(event) {
         if (event.code === 'Escape') {
