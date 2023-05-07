@@ -44,8 +44,6 @@ function imageClickOpen(event) {
 
     modal.show();
   
-    
-
     function closeModal(event) {
         if (event.code === 'Escape') {
             modal.close()
